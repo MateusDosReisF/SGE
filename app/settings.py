@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-4%1zdabj5fj7w3zymrvus5qd92(4^^83t9#=pglp==+v$%ra2k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://sistema-de-gestao-de-estoque.onrender.com']
+
+CSRF_TRUSTED_ORIGINS = ['https://sistema-de-gestao-de-estoque.onrender.com']
 
 
 # Application definition
