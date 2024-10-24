@@ -1,0 +1,128 @@
+.title__card {
+  color: #ffffff;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid #585e63;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+.card__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__form__group {
+  margin-bottom: 15px;
+}
+
+.card__label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.card__form__input,
+.card__form__textarea,
+#id_supplier,
+#id_product,
+#id_category,
+#id_cost_price,
+#id_selling_price,
+#id_brand {
+  color: #ffffff;
+  margin: 10px 0 10px 0;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #565a5e;
+  background-color: #565a5e;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.card__form__input:focus,
+.card__form__textarea:focus,
+#id_supplier:focus,
+#id_product:focus,
+#id_category:focus,
+#id_cost_price:focus,
+#id_selling_price:focus,
+#id_brand:focus  {
+  border-color: #5d97f4;
+  outline: none;
+}
+
+.card__form__cadastrar {
+  padding: 10px;
+  background-color: #70a2f2;
+  font-weight: 700;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.card__form__cadastrar:hover {
+  background-color: #5d97f4;
+}
+
+.card__form__voltar {
+  text-align: center;
+  display: inline-block;
+  padding: 0.8rem;
+  width: 110px;
+  border-radius: 8px;
+  background-color: #565b5e;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.card__form__voltar:hover {
+  background-color: #4a4d51;
+}
+
+.card__form__input__list__texto{
+  margin-top: 10px;
+  color: #5d97f4;
+}
+
+/* DETAIL */
+
+.card__title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.card__text {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* DELETE */
+
+.card__form__deletar {
+  padding: 10px;
+  background-color: #c62828;
+  font-weight: 700;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.card__form__deletar:hover {
+  background-color: #e62214;
+}

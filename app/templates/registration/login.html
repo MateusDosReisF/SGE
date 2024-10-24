@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROVECTA - LOGIN</title>
+    <script src="https://kit.fontawesome.com/0af87ce8f2.js" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div class="login">
+      <img src="{% static 'img/logo.png' %}" alt="LOGO PROVECTA" class="login__img" />
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+          <input
+            type="text"
+            name="username"
+            placeholder="Usuário"
+            class="login__input"
+            required
+          />
+          <span class="input-group__bar"></span>
+        </div>
+        <div class="input-group">
+          <div class="password-container">
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha"
+              class="login__input"
+              id="password"
+              required
+              maxlength="30"
+            />
+            <span class="input-group__bar"></span>
+            <button type="button" id="toggle-password" class="password-toggle">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="login__button">Login</button>
+      </form>
+      {% if form.errors %}
+        <div class="login__erros">
+          <ul>
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const togglePassword = document.getElementById("toggle-password");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", function () {
+          const type =
+            passwordInput.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordInput.setAttribute("type", type);
+
+          // Alternar o ícone do olho
+          this.querySelector("i").classList.toggle("fa-eye");
+          this.querySelector("i").classList.toggle("fa-eye-slash");
+        });
+      });
+    </script>
+  </body>
+</html>

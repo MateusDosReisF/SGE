@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Produtos
+{% endblock %}
+{% block content %}
+    <div class="cards__grid">
+        {% include 'components/_product_metrics.html'%}
+    </div>
+    <div class="container">
+        <div class="filter">
+            <button id="filterBtn" class="filter__button"><i class="fa-solid fa-filter"></i> Filtros</button>
+                <a href="{% url 'product_list' %}" class="card__form__voltar"><i class="fa-solid fa-filter-circle-xmark"></i> Limpar</a>
+        </div>
+        <a href="{% url 'product_create' %}" class="container__ancora"><i class="fa-solid fa-plus"></i> Novo Produto</a>
+    </div>
+    
+    <div id="filterPopup" class="popup">
+        <div class="popup__content">
+            <span class="close"><i class="fa-solid fa-circle-xmark"></i></span>
+            <form action="{% url 'product_list' %}" method="get">
+                <div class="card__form__group__filtro">
+                    <label for="id_title" class="card__label">Título:</label>
+                    <input type="text" name="title" id="id_title" class="card__form__input" value="{{ request.GET.title|default_if_none:'' }}">
+                </div>
+                
+                <label for="id_category" class="card__label">Categorias:</label>
+                <select name="category" id="id_category">
+                    <option value="" {% if not request.GET.category %} selected {% endif %}>Todas as Categorias</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %} selected {% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="id_brand" class="card__label">Marcas:</label>
+                <select name="brand" id="id_brand">
+                    <option value="" {% if not request.GET.brand %} selected {% endif %}>Todas as Marcas</option>
+                    {% for brand in brands %}
+                    <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"s" %} selected {% endif %}>{{ brand.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="card__form__group__filtro">
+                    <label for="id_serie_number" class="card__label">Número de Série:</label>
+                    <input type="text" name="serie_number" maxlength="100" id="id_serie_number" class="card__form__input" value="{{ request.GET.serie_number|default_if_none:'' }}">
+                </div>                
+                <button type="submit" class="filter__button">Aplicar Filtros</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Marca</th>
+                <th>Quantidade</th>
+                <th>Valor de Custo</th>
+                <th>Valor de Venda</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.cost_price }}</td>
+                <td>{{ product.selling_price }}</td>
+                <td class="table__actions">
+                    <a href="{% url 'product_detail' product.id %}" class="table__detail"><i class="fa-regular fa-eye"></i></a>
+                    <a href="{% url 'product_update' product.id %}" class="table__update"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{% url 'product_delete' product.id %}" class="table__delete"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const filterBtn = document.getElementById('filterBtn');
+            const filterPopup = document.getElementById('filterPopup');
+            const closeBtn = document.querySelector('.close');
+        
+            filterBtn.addEventListener('click', () => {
+                filterPopup.style.display = 'block';
+            });
+        
+            closeBtn.addEventListener('click', () => {
+                filterPopup.style.display = 'none';
+            });
+        
+            window.addEventListener('click', (event) => {
+                if (event.target == filterPopup) {
+                    filterPopup.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+    
+{% include 'components/_pagination.html' %}
+{% endblock %}

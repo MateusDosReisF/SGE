@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Detalhes da Marca 
+{% endblock %}
+    {% block content %}
+<h2 class="title__card">Detalhes da Marca</h2>
+<div class="card">
+    <h3 class="card__title">{{ object.name }}</h3>
+    <p class="card__text">{{ object.description }}</p>
+</div>
+<div class="card__voltar">
+    <a href="{% url 'brand_list' %}" class="card__form__voltar">Voltar</a>
+</div>
+    {% endblock %}

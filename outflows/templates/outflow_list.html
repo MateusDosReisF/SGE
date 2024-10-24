@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Saídas
+{% endblock %}
+{% block content %}
+
+    <div class="cards__grid">
+        {% include 'components/_sales_metrics.html'%}
+    </div>
+    <div class="container">
+        <form action="{% url 'outflow_list' %}" method="get" class="container__form">
+            <input type="text" name="product" placeholder="Produto" value="{{ request.GET.product }}" class="container__form__input">
+            <button type="submit" class="container__form__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <a href="{% url 'outflow_create' %}" class="container__ancora"><i class="fa-solid fa-plus"></i> Nova Saída</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Data de Saída</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for outflow in outflows %}
+            <tr>
+                <td>{{ outflow.id }}</td>
+                <td>{{ outflow.product }}</td>
+                <td>{{ outflow.quantity }}</td>
+                <td>{{ outflow.created_at }}</td>
+                <td class="table__actions">
+                    <a href="{% url 'outflow_detail' outflow.id %}" class="table__detail"><i class="fa-regular fa-eye"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% include 'components/_pagination.html' %}
+{% endblock %}

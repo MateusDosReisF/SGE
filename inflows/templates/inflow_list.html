@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Entradas
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <form action="{% url 'inflow_list' %}" method="get" class="container__form">
+            <input type="text" name="product" placeholder="Produto" value="{{ request.GET.product }}" class="container__form__input">
+            <button type="submit" class="container__form__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <a href="{% url 'inflow_create' %}" class="container__ancora"><i class="fa-solid fa-plus"></i> Nova Entrada</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Fornecedor</th>
+                <th>Quantidade</th>
+                <th>Data de Entrada</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inflow in inflows %}
+            <tr>
+                <td>{{ inflow.id }}</td>
+                <td>{{ inflow.product }}</td>
+                <td>{{ inflow.supplier }}</td>
+                <td>{{ inflow.quantity }}</td>
+                <td>{{ inflow.created_at }}</td>
+                <td class="table__actions">
+                    <a href="{% url 'inflow_detail' inflow.id %}" class="table__detail"><i class="fa-regular fa-eye"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% include 'components/_pagination.html' %}
+{% endblock %}

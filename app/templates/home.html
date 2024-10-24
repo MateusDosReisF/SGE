@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Dashboard
+{% endblock %}
+{% block content %}
+
+    <div class="cards__grid__dashboard">
+        {% include 'components/_product_metrics.html'%}
+        {% include 'components/_sales_metrics.html'%}
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="cards__grid__grafics">
+        <div>
+            <h3 class="graficos__titulos">Valor de Vendas (Últimos 7 Dias)</h3>
+            <canvas id="dailySalesChart"></canvas>
+        </div>
+        <div>
+            <h3 class="graficos__titulos">Quantidade de Vendas Diárias</h3>
+            <canvas id="dailySalesQuantityChart"></canvas>
+        </div>
+        <div>
+            <h3 class="graficos__titulos">Produtos Por Categorias</h3>
+            <canvas id="productByCategoryChart"></canvas>
+        </div>
+        <div>
+            <h3 class="graficos__titulos">Produtos Por Marcas</h3>
+            <canvas id="productByBrandChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var dailySalesData = JSON.parse ('{{ daily_sales_data | safe }}');
+            var dailySalesQuantityData = JSON.parse ('{{ daily_sales_quantity_data | safe }}');
+            var productByCategoryChart = JSON.parse ('{{ product_count_by_category | safe }}');
+            var productByBrandChart = JSON.parse ('{{ product_count_by_brand | safe }}');
+
+            // GRAFICO 1
+
+            var ctxDailySales = document.getElementById('dailySalesChart').getContext('2d');
+            var dailySalesChart = new Chart(ctxDailySales, {
+                type: 'line',
+                data: {
+                    labels: dailySalesData.dates,
+                    datasets: [{
+                        label: 'Valor de Vendas',
+                        data: dailySalesData.values,
+                        filç: false,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        tension: 0.5
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // GRAFICO 2
+
+            var ctxDailySalesQuantity = document.getElementById('dailySalesQuantityChart').getContext('2d');
+            var dailySalesQuantityChart = new Chart(ctxDailySalesQuantity, {
+                type: 'bar',
+                data: {
+                    labels: dailySalesQuantityData.dates,
+                    datasets: [{
+                        label: 'Quantidade de Vendas',
+                        data: dailySalesQuantityData.values,
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // GRAFICO 3
+
+            var ctxCategory = document.getElementById('productByCategoryChart').getContext('2d');
+            var productByCategoryChart = new Chart(ctxCategory, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(productByCategoryChart),
+                    datasets:[{
+                        data:Object.values(productByCategoryChart),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            });
+
+            // GRAFICO 4
+
+            var ctxBrand = document.getElementById('productByBrandChart').getContext('2d');
+            var productByBrandChart = new Chart(ctxBrand, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(productByBrandChart),
+                    datasets:[{
+                        data:Object.values(productByBrandChart),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

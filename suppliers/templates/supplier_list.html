@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Fornecedores
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <form action="{% url 'supplier_list' %}" method="get" class="container__form">
+            <input type="text" name="name" placeholder="Nome" value="{{ request.GET.name }}" class="container__form__input">
+            <button type="submit" class="container__form__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <a href="{% url 'supplier_create' %}" class="container__ancora"><i class="fa-solid fa-plus"></i> Novo Fornecedor</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.description }}</td>
+                <td class="table__actions">
+                    <a href="{% url 'supplier_detail' supplier.id %}" class="table__detail"><i class="fa-regular fa-eye"></i></a>
+                    <a href="{% url 'supplier_update' supplier.id %}" class="table__update"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{% url 'supplier_delete' supplier.id %}" class="table__delete"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% include 'components/_pagination.html' %}
+{% endblock %}

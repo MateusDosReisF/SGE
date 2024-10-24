@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/0af87ce8f2.js" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layoutViews.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layoutCreate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layoutPagination.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cardDashboard.css' %}">
+</head>
+<body class="layout">
+    {% include 'components/_header.html'%}
+    <div>
+        {% include 'components/_sidebar.html'%}
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'components/_footer.html'%}
+</body>
+</html>

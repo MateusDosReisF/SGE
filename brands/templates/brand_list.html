@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Marcas
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <form action="{% url 'brand_list' %}" method="get" class="container__form">
+            <input type="text" name="name" placeholder="Nome" value="{{ request.GET.name }}" class="container__form__input">
+            <button type="submit" class="container__form__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <a href="{% url 'brand_create' %}" class="container__ancora"><i class="fa-solid fa-plus"></i> Nova Marca</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td>{{ brand.description }}</td>
+                <td class="table__actions">
+                    <a href="{% url 'brand_detail' brand.id %}" class="table__detail"><i class="fa-regular fa-eye"></i></a>
+                    <a href="{% url 'brand_update' brand.id %}" class="table__update"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{% url 'brand_delete' brand.id %}" class="table__delete"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% include 'components/_pagination.html' %}
+{% endblock %}

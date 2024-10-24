@@ -1,0 +1,49 @@
+<div class="sidebar">
+  <ul class="sidebar__lista">
+    <li class="sidebar__lista__item">
+      <a href="{% url 'home' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-chart-line"></i> Dashboard</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'supplier_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-truck"></i> Fornecedores</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'brand_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-shop"></i> Marcas</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'category_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-tags"></i> Categorias</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'product_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-box"></i> Produtos</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'inflow_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-square-arrow-up-right"></i> Entradas</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <a href="{% url 'outflow_list' %}" class="sidebar__lista__item-ancora"
+        ><i class="fa-solid fa-square-arrow-up-right fa-rotate-180"></i>
+        Saídas</a
+      >
+    </li>
+    <li class="sidebar__lista__item">
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="sidebar__lista__item-ancora">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Sair</span>
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>

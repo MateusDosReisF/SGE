@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Detalhes da Saída 
+{% endblock %}
+    {% block content %}
+<h2 class="title__card">Detalhes da Saída</h2>
+<div class="card">
+    <h3 class="card__title">{{ object.product }}</h3>
+    <p class="card__text">Quantidade: <strong>{{ object.quantity }}</strong></p>
+    <p class="card__text">{{ object.description }}</p>
+</div>
+<div class="card__voltar">
+    <a href="{% url 'outflow_list' %}" class="card__form__voltar">Voltar</a>
+</div>
+    {% endblock %}
+
+
+    
+
+    

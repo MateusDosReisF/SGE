@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    SGE - Cadastro de Entrada
+{% endblock %}
+{% block content %}
+<h2 class="title__card">Cadastrar Entrada</h2>
+<div class="card">
+    <form method="post" class="card__form">
+        {% csrf_token %}
+        <div class="card__form__group">
+            <label for="id_fornecedor" class="card__label">Fornecedor:</label>
+            {{ form.supplier }}
+        </div>
+        <div class="card__form__group">
+            <label for="id_produto" class="card__label">Produto:</label>
+            {{ form.product }}
+        </div>
+        <div class="card__form__group">
+            <label for="id_quantidade" class="card__label">Quantidade:</label>
+            <input type="number" name="quantity" required id="id_quantidade" class="card__form__input">
+        </div>
+        <div class="card__form__group">
+            <label for="id_description" class="card__label">Descrição:</label>
+            <textarea name="description" rows="5" id="id_description" class="card__form__textarea"></textarea>
+        </div>
+        <button type="submit" class="card__form__cadastrar">Cadastrar</button>
+    </form>
+</div>
+<div class="card__voltar">
+    <a href="{% url 'inflow_list' %}" class="card__form__voltar">Voltar</a>
+</div>
+{% endblock %}

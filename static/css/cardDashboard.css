@@ -1,0 +1,90 @@
+.cards__grid__dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #565a5e;
+  border-radius: 10px;
+}
+
+.cards__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #565a5e;
+  border-radius: 10px;
+}
+
+.card__produto__quantidade {
+  background-color: #2875ef;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.card__produto__custo {
+  background-color: #dd3544;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.card__produto__valor {
+  background-color: #1a8755;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.card__produto__lucro {
+  background-color: #de9d12;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.card__produto__titulo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card__produto__texto {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+/* GRÁFICOS */
+
+.cards__grid__grafics {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #565a5e;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.graficos__titulos{
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+#productByCategoryChart,
+#productByBrandChart{
+  max-width: 400px;
+  margin: 0 auto;
+}

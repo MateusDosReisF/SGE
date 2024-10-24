@@ -1,0 +1,16 @@
+<div class="card__produto__quantidade">
+    <h2 class="card__produto__titulo">Quantidade de Vendas</h2>
+    <p class="card__produto__texto">{{ sales_metrics.total_sales }}</p>
+</div>
+<div class="card__produto__custo">
+    <h2 class="card__produto__titulo">Produtos Vendidos</h2>
+    <p class="card__produto__texto">{{ sales_metrics.total_products_sold }}</p>
+</div>
+<div class="card__produto__valor">
+    <h2 class="card__produto__titulo">Valor das Vendas</h2>
+    <p class="card__produto__texto">R$ {{ sales_metrics.total_sales_value }}</p>
+</div>
+<div class="card__produto__lucro">
+    <h2 class="card__produto__titulo">Lucro das Vendas</h2>
+    <p class="card__produto__texto">R$ {{ sales_metrics.total_sales_profit }}</p>
+</div>
