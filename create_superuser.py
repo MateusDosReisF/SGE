@@ -2,7 +2,10 @@ import os
 import django
 from django.contrib.auth.models import User
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seuprojeto.settings')
+# Defina a variável de ambiente DJANGO_SETTINGS_MODULE
+# Substitua 'seuprojeto' pelo nome correto do seu projeto
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+
 django.setup()
 
 # Verifica se o superusuário já existe
