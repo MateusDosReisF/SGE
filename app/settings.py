@@ -90,10 +90,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'provecta',  # Nome do banco de dados
+        'USER': 'provecta',
+        'PASSWORD': 'h4RlErJFvOuFbmD2ZS9XU2Pg5CAgpdrX',
+        # Se for um banco remoto, insira o IP/URL aqui
+        'HOST': 'postgresql://provecta:h4RlErJFvOuFbmD2ZS9XU2Pg5CAgpdrX@dpg-csh4m50gph6c73c0bsbg-a/provecta',
+        'PORT': '5432',        # Porta padrão do PostgreSQL
     }
 }
+
 
 
 # Password validation
